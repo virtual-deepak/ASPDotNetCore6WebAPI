@@ -173,38 +173,6 @@
 				}
 			},
 			"response": []
-		},
-		{
-			"name": "Update Point of Interest",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Updated - Père\",\r\n    \"description\": \"Updated - Notable figures in the arts buried at Pere Lachaise include Frédéric Chopin, Édith Piaf, Marcel Proust, Sarah Bernhardt, Oscar Wilde, J.R.D. Tata, and Jim Morrison\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities/3/pointsofinterest/7",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "{{portNumber}}",
-					"path": [
-						"api",
-						"cities",
-						"3",
-						"pointsofinterest",
-						"7"
-					]
-				}
-			},
-			"response": []
 		}
 	]
 }

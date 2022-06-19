@@ -25,3 +25,4 @@ W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\obj\Debug\net6.0\refint\DotNe
 W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\obj\Debug\net6.0\DotNetCoreWebAPI.pdb
 W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\obj\Debug\net6.0\DotNetCoreWebAPI.genruntimeconfig.cache
 W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\obj\Debug\net6.0\ref\DotNetCoreWebAPI.dll
+W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\bin\Debug\net6.0\DotNetCoreWebAPI.postman_collection.json

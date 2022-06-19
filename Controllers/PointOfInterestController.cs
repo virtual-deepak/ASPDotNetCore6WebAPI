@@ -59,9 +59,32 @@ namespace DotNetCoreWebAPI.Controllers
                 newPointOfInterest);
         }
 
+        [HttpPut("{id}")]
+        public IActionResult UpdatePointOfInterest(int cityId,
+            int id,
+            PointOfInterestToUpdateDto pointOfInterest)
+        {
+            var existingPointOfInterest = GetExistingPointOfInterest(cityId, id);
+            if (existingPointOfInterest == null)
+                return NotFound();
+
+            existingPointOfInterest.Description = pointOfInterest.Description;
+            existingPointOfInterest.Name = pointOfInterest.Name;
+
+            return NoContent();
+        }
+
         private CityDto GetCity(int cityId)
         {
             return CitiesDataStore.Current.Cities.FirstOrDefault(x => x.Id == cityId);
+        }
+
+        private PointOfInterestDto GetExistingPointOfInterest(int cityId, int id)
+        {
+            return CitiesDataStore.Current.Cities
+                .FirstOrDefault(x => x.Id == cityId)?
+                .PointsOfInterest
+                .FirstOrDefault(x => x.Id == id);
         }
     }
 }
