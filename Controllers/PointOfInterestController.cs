@@ -126,5 +126,26 @@ namespace DotNetCoreWebAPI.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{id:int}")]
+        public IActionResult DeletePointOfInterest(
+            int cityId,
+            int id)
+        {
+            var city = HelperFunctions.GetCity(cityId);
+            if (city == null)
+            {
+                return NotFound();
+            }
+
+            var existingPointOfInterest = HelperFunctions.GetExistingPointOfInterest(cityId, id);
+            if (existingPointOfInterest == null)
+            {
+                return NotFound();
+            }
+
+            city.PointsOfInterest.Remove(existingPointOfInterest);
+            return NoContent();
+        }
     }
 }
