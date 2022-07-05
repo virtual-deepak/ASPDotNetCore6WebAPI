@@ -1,5 +1,5 @@
+using System.Net;
 using DotNetCoreWebAPI.Helpers;
-using DotNetCoreWebAPI.InMemoryDataStore;
 using DotNetCoreWebAPI.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -10,12 +10,21 @@ namespace DotNetCoreWebAPI.Controllers
     [Route("api/cities/{cityId:int}/pointsofinterest")]
     public class PointOfInterestController : ControllerBase
     {
+        private readonly ILogger<PointOfInterestController> _logger;
+        public PointOfInterestController(ILogger<PointOfInterestController> logger)
+        {
+            this._logger = logger;
+        }
+
         [HttpGet]
         public IActionResult GetPointsOfInterest(int cityId)
         {
             var city = HelperFunctions.GetCity(cityId);
             if (city == null)
+            {
+                _logger.LogInformation($"Cannot find city with id: {cityId}");
                 return NotFound();
+            }
 
             return Ok(city.PointsOfInterest);
         }
@@ -23,15 +32,25 @@ namespace DotNetCoreWebAPI.Controllers
         [HttpGet("{id:int}", Name = "GetPointOfInterest")]
         public IActionResult GetPointOfInterest(int cityId, int id)
         {
-            var city = HelperFunctions.GetCity(cityId);
-            if (city == null)
-                return NotFound();
+            try
+            {
+                throw new Exception("Simulated exception...");
+                var city = HelperFunctions.GetCity(cityId);
+                if (city == null)
+                    return NotFound();
 
-            var pointOfInterest = city.PointsOfInterest.FirstOrDefault(x => x.Id == id);
-            if (pointOfInterest == null)
-                return NotFound();
+                var pointOfInterest = city.PointsOfInterest.FirstOrDefault(x => x.Id == id);
+                if (pointOfInterest == null)
+                    return NotFound();
 
-            return Ok(pointOfInterest);
+                return Ok(pointOfInterest);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical($"Exception occurred while calling GetPointOfInterest",
+                    ex);
+                return StatusCode((int)HttpStatusCode.InternalServerError, "An error occurred on server");
+            }
         }
 
         [HttpPost]
