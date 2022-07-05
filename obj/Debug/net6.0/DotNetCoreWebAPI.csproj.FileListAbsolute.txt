@@ -26,3 +26,7 @@ W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\obj\Debug\net6.0\DotNetCoreWe
 W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\obj\Debug\net6.0\DotNetCoreWebAPI.genruntimeconfig.cache
 W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\obj\Debug\net6.0\ref\DotNetCoreWebAPI.dll
 W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\bin\Debug\net6.0\DotNetCoreWebAPI.postman_collection.json
+W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\bin\Debug\net6.0\Newtonsoft.Json.dll
+W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll

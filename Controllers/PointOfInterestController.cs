@@ -1,17 +1,19 @@
+using DotNetCoreWebAPI.Helpers;
 using DotNetCoreWebAPI.InMemoryDataStore;
 using DotNetCoreWebAPI.Models;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotNetCoreWebAPI.Controllers
 {
     [ApiController]
-    [Route("api/cities/{cityId}/pointsofinterest")]
+    [Route("api/cities/{cityId:int}/pointsofinterest")]
     public class PointOfInterestController : ControllerBase
     {
         [HttpGet]
         public IActionResult GetPointsOfInterest(int cityId)
         {
-            var city = GetCity(cityId);
+            var city = HelperFunctions.GetCity(cityId);
             if (city == null)
                 return NotFound();
 
@@ -21,7 +23,7 @@ namespace DotNetCoreWebAPI.Controllers
         [HttpGet("{id:int}", Name = "GetPointOfInterest")]
         public IActionResult GetPointOfInterest(int cityId, int id)
         {
-            var city = GetCity(cityId);
+            var city = HelperFunctions.GetCity(cityId);
             if (city == null)
                 return NotFound();
 
@@ -36,7 +38,7 @@ namespace DotNetCoreWebAPI.Controllers
         public IActionResult CreatePointOfInterest(int cityId,
             PointOfInterestToCreateDto pointOfInterest)
         {
-            var city = GetCity(cityId);
+            var city = HelperFunctions.GetCity(cityId);
             if (city == null)
                 return NotFound();
 
@@ -53,18 +55,18 @@ namespace DotNetCoreWebAPI.Controllers
             return CreatedAtRoute("GetPointOfInterest",
                 new
                 {
-                    cityId = cityId,
+                    cityId,
                     id = newPointOfInterest.Id
                 },
                 newPointOfInterest);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public IActionResult UpdatePointOfInterest(int cityId,
             int id,
             PointOfInterestToUpdateDto pointOfInterest)
         {
-            var existingPointOfInterest = GetExistingPointOfInterest(cityId, id);
+            var existingPointOfInterest = HelperFunctions.GetExistingPointOfInterest(cityId, id);
             if (existingPointOfInterest == null)
                 return NotFound();
 
@@ -74,17 +76,55 @@ namespace DotNetCoreWebAPI.Controllers
             return NoContent();
         }
 
-        private CityDto GetCity(int cityId)
+        [HttpPatch("{id:int}")]
+        public IActionResult PatchPointOfInterest(
+            int cityId,
+            int id,
+            [FromBody] JsonPatchDocument<PointOfInterestToUpdateDto> jsonPatchModel)
         {
-            return CitiesDataStore.Current.Cities.FirstOrDefault(x => x.Id == cityId);
-        }
+            var city = HelperFunctions.GetCity(cityId);
+            if (city == null)
+            {
+                return NotFound();
+            }
 
-        private PointOfInterestDto GetExistingPointOfInterest(int cityId, int id)
-        {
-            return CitiesDataStore.Current.Cities
-                .FirstOrDefault(x => x.Id == cityId)?
-                .PointsOfInterest
-                .FirstOrDefault(x => x.Id == id);
+            var existingPointOfInterest = HelperFunctions.GetExistingPointOfInterest(cityId, id);
+            if (existingPointOfInterest == null)
+            {
+                return NotFound();
+            }
+
+            var pointOfInterestToUpdateDto = new PointOfInterestToUpdateDto()
+            {
+                Description = existingPointOfInterest.Description,
+                Name = existingPointOfInterest.Name
+            };
+
+            // Input model inputs applied to existing entity. 
+            // Any errors will be populated into current ModelState i.e. JsonPatchDocument<PointOfInterestToUpdateDto>
+            jsonPatchModel.ApplyTo(pointOfInterestToUpdateDto, ModelState);
+
+            // Check ModelState validity explicitly as JsonPatch uses Newtonsoft.Json
+            // and not out of the box Json formatters which is inferred by ApiController automatically
+            // based on annotations. 
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            // Validate if the patched entity is valid or not based on annotations applied
+            // as ModelState here is JsonPatchDocument<PointOfInterestToUpdateDto>
+            // and not PointOfInterestToUpdateDto
+            // Any errors however, will continue to populate in ModelState.
+            if (!TryValidateModel(pointOfInterestToUpdateDto))
+            {
+                return BadRequest(ModelState);
+            }
+
+            existingPointOfInterest.Description = pointOfInterestToUpdateDto.Description;
+            existingPointOfInterest.Name = pointOfInterestToUpdateDto.Name;
+
+            return NoContent();
         }
     }
 }
