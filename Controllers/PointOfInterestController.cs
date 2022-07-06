@@ -11,9 +11,16 @@ namespace DotNetCoreWebAPI.Controllers
     public class PointOfInterestController : ControllerBase
     {
         private readonly ILogger<PointOfInterestController> _logger;
-        public PointOfInterestController(ILogger<PointOfInterestController> logger)
+        public PointOfInterestController(
+            ILogger<PointOfInterestController> logger,
+            IHttpContextAccessor httpContextAccessor)
         {
-            this._logger = logger;
+            this._logger = logger ?? throw new ArgumentNullException(nameof(logger));
+
+            // Alternate way to get injected services if not injected through controller
+            // However, DI is preferred way
+            // this._logger =
+            // httpContextAccessor.HttpContext.RequestServices.GetService<ILogger<PointOfInterestController>>();
         }
 
         [HttpGet]
