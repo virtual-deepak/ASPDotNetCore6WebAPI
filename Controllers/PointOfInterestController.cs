@@ -1,6 +1,8 @@
 using System.Net;
 using DotNetCoreWebAPI.Helpers;
+using DotNetCoreWebAPI.InMemoryDataStore;
 using DotNetCoreWebAPI.Models;
+using DotNetCoreWebAPI.Services;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,11 +12,16 @@ namespace DotNetCoreWebAPI.Controllers
     [Route("api/cities/{cityId:int}/pointsofinterest")]
     public class PointOfInterestController : ControllerBase
     {
+        private readonly IMailService _mailService;
         private readonly ILogger<PointOfInterestController> _logger;
         public PointOfInterestController(
-            ILogger<PointOfInterestController> logger)
+            ILogger<PointOfInterestController> logger,
+            IMailService mailService,
+            CitiesDataStore citiesDataStore)
         {
+            this._mailService = mailService ?? throw new ArgumentNullException(nameof(mailService));
             this._logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            HelperFunctions.CitiesDataStore = citiesDataStore;
         }
 
         [HttpGet]
@@ -35,7 +42,6 @@ namespace DotNetCoreWebAPI.Controllers
         {
             try
             {
-                throw new Exception("Simulated exception from code...");
                 var city = HelperFunctions.GetCity(cityId);
                 if (city == null)
                     return NotFound();
@@ -165,6 +171,9 @@ namespace DotNetCoreWebAPI.Controllers
             }
 
             city.PointsOfInterest.Remove(existingPointOfInterest);
+            this._mailService.SendMail(
+                $"Point of interest deleted.",
+                $"Point of interest {existingPointOfInterest.Name} with id {existingPointOfInterest.Id}");
             return NoContent();
         }
     }

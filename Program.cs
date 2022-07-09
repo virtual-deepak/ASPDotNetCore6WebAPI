@@ -1,3 +1,5 @@
+using DotNetCoreWebAPI.InMemoryDataStore;
+using DotNetCoreWebAPI.Services;
 using Microsoft.AspNetCore.StaticFiles;
 using Serilog;
 
@@ -12,13 +14,21 @@ Log.Logger = new LoggerConfiguration()
     .ReadFrom
     .Configuration(config)
     .WriteTo.Console()
-    .WriteTo.File("logs/cityinfo.txt", rollingInterval: RollingInterval.Hour)
+    //.WriteTo.File("logs/cityinfo.txt", rollingInterval: RollingInterval.Hour)
     .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 builder.Host.UseSerilog();
 
+#if DEBUG
+builder.Services.AddTransient<IMailService, LocalMailService>();
+#else
+builder.Services.AddTransient<IMailService, CloudMailService>();
+#endif
+
+builder.Services.AddSingleton<CitiesDataStore>();
 // Add services to the container.
 
 builder.Services.AddControllers(options =>

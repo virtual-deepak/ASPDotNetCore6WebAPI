@@ -5,14 +5,15 @@ namespace DotNetCoreWebAPI.Helpers
 {
     public static class HelperFunctions
     {
+        public static CitiesDataStore CitiesDataStore { get; set; }
         public static CityDto? GetCity(int cityId)
         {
-            return CitiesDataStore.Current.Cities.FirstOrDefault(x => x.Id == cityId);
+            return CitiesDataStore.Cities.FirstOrDefault(x => x.Id == cityId);
         }
 
         public static PointOfInterestDto? GetExistingPointOfInterest(int cityId, int id)
         {
-            return CitiesDataStore.Current.Cities
+            return CitiesDataStore.Cities
                 .FirstOrDefault(x => x.Id == cityId)?
                 .PointsOfInterest
                 .FirstOrDefault(x => x.Id == id);
