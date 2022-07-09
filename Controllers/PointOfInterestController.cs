@@ -12,15 +12,9 @@ namespace DotNetCoreWebAPI.Controllers
     {
         private readonly ILogger<PointOfInterestController> _logger;
         public PointOfInterestController(
-            ILogger<PointOfInterestController> logger,
-            IHttpContextAccessor httpContextAccessor)
+            ILogger<PointOfInterestController> logger)
         {
             this._logger = logger ?? throw new ArgumentNullException(nameof(logger));
-
-            // Alternate way to get injected services if not injected through controller
-            // However, DI is preferred way
-            // this._logger =
-            // httpContextAccessor.HttpContext.RequestServices.GetService<ILogger<PointOfInterestController>>();
         }
 
         [HttpGet]
@@ -41,7 +35,7 @@ namespace DotNetCoreWebAPI.Controllers
         {
             try
             {
-                throw new Exception("Simulated exception...");
+                throw new Exception("Simulated exception from code...");
                 var city = HelperFunctions.GetCity(cityId);
                 if (city == null)
                     return NotFound();

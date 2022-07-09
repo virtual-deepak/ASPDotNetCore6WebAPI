@@ -30,3 +30,13 @@ W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\bin\Debug\net6.0\Microsoft.As
 W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\bin\Debug\net6.0\Newtonsoft.Json.dll
 W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\bin\Debug\net6.0\Serilog.dll
+W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\bin\Debug\net6.0\Serilog.AspNetCore.dll
+W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\bin\Debug\net6.0\Serilog.Extensions.Hosting.dll
+W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\bin\Debug\net6.0\Serilog.Extensions.Logging.dll
+W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\bin\Debug\net6.0\Serilog.Formatting.Compact.dll
+W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\bin\Debug\net6.0\Serilog.Settings.Configuration.dll
+W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\bin\Debug\net6.0\Serilog.Sinks.Console.dll
+W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\bin\Debug\net6.0\Serilog.Sinks.Debug.dll
+W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\bin\Debug\net6.0\Serilog.Sinks.File.dll

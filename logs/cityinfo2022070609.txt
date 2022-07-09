@@ -1,0 +1,36 @@
+2022-07-06 09:05:51.912 +05:30 [INF] Now listening on: https://localhost:7020
+2022-07-06 09:05:52.001 +05:30 [INF] Now listening on: http://localhost:5225
+2022-07-06 09:05:52.008 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-07-06 09:05:52.009 +05:30 [INF] Hosting environment: Development
+2022-07-06 09:05:52.009 +05:30 [INF] Content root path: W:\MyGitHubRepos\DotNetCoreWebAPI\DotNetCoreWebAPI\
+2022-07-06 09:05:54.499 +05:30 [INF] Request starting HTTP/1.1 GET https://localhost:7020/api/cities/1/pointsofinterest/1 - -
+2022-07-06 09:05:54.613 +05:30 [INF] Executing endpoint 'DotNetCoreWebAPI.Controllers.PointOfInterestController.GetPointOfInterest (DotNetCoreWebAPI)'
+2022-07-06 09:05:54.645 +05:30 [INF] Route matched with {action = "GetPointOfInterest", controller = "PointOfInterest"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetPointOfInterest(Int32, Int32) on controller DotNetCoreWebAPI.Controllers.PointOfInterestController (DotNetCoreWebAPI).
+2022-07-06 09:05:54.773 +05:30 [FTL] Exception occurred while calling GetPointOfInterest
+2022-07-06 09:05:54.780 +05:30 [INF] Executing ObjectResult, writing value of type 'System.String'.
+2022-07-06 09:05:54.805 +05:30 [INF] Executed action DotNetCoreWebAPI.Controllers.PointOfInterestController.GetPointOfInterest (DotNetCoreWebAPI) in 139.579ms
+2022-07-06 09:05:54.812 +05:30 [INF] Executed endpoint 'DotNetCoreWebAPI.Controllers.PointOfInterestController.GetPointOfInterest (DotNetCoreWebAPI)'
+2022-07-06 09:05:54.816 +05:30 [INF] Request finished HTTP/1.1 GET https://localhost:7020/api/cities/1/pointsofinterest/1 - - - 500 - text/plain;+charset=utf-8 321.2907ms
+2022-07-06 09:07:01.063 +05:30 [INF] Request starting HTTP/1.1 GET https://localhost:7020/api/cities/10/pointsofinterest/1 - -
+2022-07-06 09:07:01.065 +05:30 [INF] Executing endpoint 'DotNetCoreWebAPI.Controllers.PointOfInterestController.GetPointOfInterest (DotNetCoreWebAPI)'
+2022-07-06 09:07:01.065 +05:30 [INF] Route matched with {action = "GetPointOfInterest", controller = "PointOfInterest"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetPointOfInterest(Int32, Int32) on controller DotNetCoreWebAPI.Controllers.PointOfInterestController (DotNetCoreWebAPI).
+2022-07-06 09:07:01.132 +05:30 [FTL] Exception occurred while calling GetPointOfInterest
+2022-07-06 09:07:01.133 +05:30 [INF] Executing ObjectResult, writing value of type 'System.String'.
+2022-07-06 09:07:01.133 +05:30 [INF] Executed action DotNetCoreWebAPI.Controllers.PointOfInterestController.GetPointOfInterest (DotNetCoreWebAPI) in 68.1034ms
+2022-07-06 09:07:01.133 +05:30 [INF] Executed endpoint 'DotNetCoreWebAPI.Controllers.PointOfInterestController.GetPointOfInterest (DotNetCoreWebAPI)'
+2022-07-06 09:07:01.134 +05:30 [INF] Request finished HTTP/1.1 GET https://localhost:7020/api/cities/10/pointsofinterest/1 - - - 500 - text/plain;+charset=utf-8 70.1543ms
+2022-07-06 09:07:06.062 +05:30 [INF] Request starting HTTP/1.1 GET https://localhost:7020/api/cities/10 - -
+2022-07-06 09:07:06.063 +05:30 [INF] Executing endpoint 'DotNetCoreWebAPI.Controllers.CitiesController.GetCity (DotNetCoreWebAPI)'
+2022-07-06 09:07:06.065 +05:30 [INF] Route matched with {action = "GetCity", controller = "Cities"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetCity(Int32) on controller DotNetCoreWebAPI.Controllers.CitiesController (DotNetCoreWebAPI).
+2022-07-06 09:07:06.071 +05:30 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2022-07-06 09:07:06.331 +05:30 [INF] Executed action DotNetCoreWebAPI.Controllers.CitiesController.GetCity (DotNetCoreWebAPI) in 266.1094ms
+2022-07-06 09:07:06.331 +05:30 [INF] Executed endpoint 'DotNetCoreWebAPI.Controllers.CitiesController.GetCity (DotNetCoreWebAPI)'
+2022-07-06 09:07:06.331 +05:30 [INF] Request finished HTTP/1.1 GET https://localhost:7020/api/cities/10 - - - 404 161 application/problem+json;+charset=utf-8 269.2944ms
+2022-07-06 09:08:37.129 +05:30 [INF] Request starting HTTP/1.1 GET https://localhost:7020/api/cities/10/pointsofinterest - -
+2022-07-06 09:08:37.134 +05:30 [INF] Executing endpoint 'DotNetCoreWebAPI.Controllers.PointOfInterestController.GetPointsOfInterest (DotNetCoreWebAPI)'
+2022-07-06 09:08:37.140 +05:30 [INF] Route matched with {action = "GetPointsOfInterest", controller = "PointOfInterest"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetPointsOfInterest(Int32) on controller DotNetCoreWebAPI.Controllers.PointOfInterestController (DotNetCoreWebAPI).
+2022-07-06 09:08:37.144 +05:30 [INF] Cannot find city with id: 10
+2022-07-06 09:08:37.145 +05:30 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2022-07-06 09:08:37.147 +05:30 [INF] Executed action DotNetCoreWebAPI.Controllers.PointOfInterestController.GetPointsOfInterest (DotNetCoreWebAPI) in 6.7304ms
+2022-07-06 09:08:37.147 +05:30 [INF] Executed endpoint 'DotNetCoreWebAPI.Controllers.PointOfInterestController.GetPointsOfInterest (DotNetCoreWebAPI)'
+2022-07-06 09:08:37.147 +05:30 [INF] Request finished HTTP/1.1 GET https://localhost:7020/api/cities/10/pointsofinterest - - - 404 161 application/problem+json;+charset=utf-8 18.4292ms
