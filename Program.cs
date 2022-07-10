@@ -1,6 +1,9 @@
+using DotNetCoreWebAPI.DbContexts;
 using DotNetCoreWebAPI.InMemoryDataStore;
 using DotNetCoreWebAPI.Services;
 using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Sqlite;
 using Serilog;
 
 // Log.Logger = new LoggerConfiguration()
@@ -40,6 +43,11 @@ builder.Services.AddControllers(options =>
 builder.Services.AddSingleton<FileExtensionContentTypeProvider>();
 
 builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddDbContext<CityInfoDbContext>(options =>
+{
+    options.UseSqlite(builder.Configuration["ConnectionStrings:DbConnectionString"]);
+});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
