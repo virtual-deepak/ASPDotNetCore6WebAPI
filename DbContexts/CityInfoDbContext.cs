@@ -55,13 +55,27 @@ namespace DotNetCoreWebAPI.DbContexts
                 new PointOfInterest()
                 {
                     Id = 3,
+                    Name = "Cathedral of Our Lady",
+                    Description = "A Gothic style cathedral, conceived by architects Jan and Pieter Appelmans.",
+                    CityId = 2
+                },
+                new PointOfInterest()
+                {
+                    Id = 4,
+                    Name = "Antwerp Central Station",
+                    Description = "The the finest example of railway architecture in Belgium.",
+                    CityId = 2
+                },
+                new PointOfInterest()
+                {
+                    Id = 5,
                     Name = "Eiffel Tower",
                     Description = "A wrought iron lattice tower on the Champ de Mars, named after engineer Gustave Eiffel.",
                     CityId = 3
                 },
                 new PointOfInterest()
                 {
-                    Id = 4,
+                    Id = 6,
                     Name = "The Louvre",
                     Description = "The world's largest museum.",
                     CityId = 3
