@@ -55,10 +55,8 @@ namespace DotNetCoreWebAPI.Controllers
                 if (city == null)
                     return NotFound();
 
-                var pointOfInterest = await this.pointOfInterestRepository.GetPointOfInterestAsync(
-                    cityId,
-                    id
-                );
+                var pointOfInterest = await this.pointOfInterestRepository.GetPointOfInterestAsync(id);
+
                 if (pointOfInterest == null)
                     return NotFound();
 
@@ -72,121 +70,111 @@ namespace DotNetCoreWebAPI.Controllers
             }
         }
 
-        // [HttpPost]
-        // public IActionResult CreatePointOfInterest(int cityId,
-        //     PointOfInterestToCreateDto pointOfInterest)
-        // {
-        //     var city = HelperFunctions.GetCity(cityId);
-        //     if (city == null)
-        //         return NotFound();
+        [HttpPost]
+        public async Task<IActionResult> CreatePointOfInterest(int cityId,
+            PointOfInterestToCreateDto pointOfInterest)
+        {
+            var city = await this.cityRepository.GetCityAsync(cityId);
+            if (city == null)
+                return NotFound();
 
-        //     int maxCityId = city.PointsOfInterest.Max(x => x.Id);
-        //     var newPointOfInterest = new PointOfInterestDto()
-        //     {
-        //         Id = ++maxCityId,
-        //         Description = pointOfInterest.Description,
-        //         Name = pointOfInterest.Name
-        //     };
+            var entity = this.mapper.Map<Entities.PointOfInterest>(pointOfInterest);
+            entity.CityId = cityId;
+            entity = await this.pointOfInterestRepository.CreateAsync(entity);
 
-        //     city.PointsOfInterest.Add(newPointOfInterest);
+            return CreatedAtRoute("GetPointOfInterest",
+                new
+                {
+                    cityId,
+                    id = entity.Id
+                },
+                this.mapper.Map<PointOfInterestDto>(entity));
+        }
 
-        //     return CreatedAtRoute("GetPointOfInterest",
-        //         new
-        //         {
-        //             cityId,
-        //             id = newPointOfInterest.Id
-        //         },
-        //         newPointOfInterest);
-        // }
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> UpdatePointOfInterest(int cityId,
+            int id,
+            PointOfInterestToUpdateDto pointOfInterest)
+        {
+            var city = await this.cityRepository.GetCityAsync(cityId);
+            if (city == null)
+                return NotFound();
 
-        // [HttpPut("{id:int}")]
-        // public IActionResult UpdatePointOfInterest(int cityId,
-        //     int id,
-        //     PointOfInterestToUpdateDto pointOfInterest)
-        // {
-        //     var existingPointOfInterest = HelperFunctions.GetExistingPointOfInterest(cityId, id);
-        //     if (existingPointOfInterest == null)
-        //         return NotFound();
+            var inStorePointOfInterest = await this.pointOfInterestRepository.GetPointOfInterestAsync(id);
+            if (inStorePointOfInterest == null)
+                return NotFound();
 
-        //     existingPointOfInterest.Description = pointOfInterest.Description;
-        //     existingPointOfInterest.Name = pointOfInterest.Name;
+            this.mapper.Map(pointOfInterest, inStorePointOfInterest);
+            await this.pointOfInterestRepository.UpdateAsync(inStorePointOfInterest);
 
-        //     return NoContent();
-        // }
+            return NoContent();
+        }
 
-        // [HttpPatch("{id:int}")]
-        // public IActionResult PatchPointOfInterest(
-        //     int cityId,
-        //     int id,
-        //     [FromBody] JsonPatchDocument<PointOfInterestToUpdateDto> jsonPatchModel)
-        // {
-        //     var city = HelperFunctions.GetCity(cityId);
-        //     if (city == null)
-        //     {
-        //         return NotFound();
-        //     }
+        [HttpPatch("{id:int}")]
+        public async Task<IActionResult> PatchPointOfInterest(
+            int cityId,
+            int id,
+            [FromBody] JsonPatchDocument<PointOfInterestToUpdateDto> jsonPatchModel)
+        {
+            var city = await this.cityRepository.GetCityAsync(cityId);
+            if (city == null)
+            {
+                return NotFound();
+            }
 
-        //     var existingPointOfInterest = HelperFunctions.GetExistingPointOfInterest(cityId, id);
-        //     if (existingPointOfInterest == null)
-        //     {
-        //         return NotFound();
-        //     }
+            var inStorePointOfInterest = await this.pointOfInterestRepository.GetPointOfInterestAsync(id);
+            if (inStorePointOfInterest == null)
+                return NotFound();
 
-        //     var pointOfInterestToUpdateDto = new PointOfInterestToUpdateDto()
-        //     {
-        //         Description = existingPointOfInterest.Description,
-        //         Name = existingPointOfInterest.Name
-        //     };
+            var pointOfInterestToPatch = this.mapper.Map<PointOfInterestToUpdateDto>(inStorePointOfInterest);
 
-        //     // Input model inputs applied to existing entity. 
-        //     // Any errors will be populated into current ModelState i.e. JsonPatchDocument<PointOfInterestToUpdateDto>
-        //     jsonPatchModel.ApplyTo(pointOfInterestToUpdateDto, ModelState);
+            // Input model inputs applied to existing entity. 
+            // Any errors will be populated into current ModelState i.e. JsonPatchDocument<PointOfInterestToUpdateDto>
+            jsonPatchModel.ApplyTo(pointOfInterestToPatch, ModelState);
 
-        //     // Check ModelState validity explicitly as JsonPatch uses Newtonsoft.Json
-        //     // and not out of the box Json formatters which is inferred by ApiController automatically
-        //     // based on annotations. 
-        //     if (!ModelState.IsValid)
-        //     {
-        //         return BadRequest(ModelState);
-        //     }
+            // Check ModelState validity explicitly as JsonPatch uses Newtonsoft.Json
+            // and not out of the box Json formatters which is inferred by ApiController automatically
+            // based on annotations. 
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //     // Validate if the patched entity is valid or not based on annotations applied
-        //     // as ModelState here is JsonPatchDocument<PointOfInterestToUpdateDto>
-        //     // and not PointOfInterestToUpdateDto
-        //     // Any errors however, will continue to populate in ModelState.
-        //     if (!TryValidateModel(pointOfInterestToUpdateDto))
-        //     {
-        //         return BadRequest(ModelState);
-        //     }
+            // Validate if the patched entity is valid or not based on annotations applied
+            // as ModelState here is JsonPatchDocument<PointOfInterestToUpdateDto>
+            // and not PointOfInterestToUpdateDto
+            // Any errors however, will continue to populate in ModelState.
+            if (!TryValidateModel(pointOfInterestToPatch))
+            {
+                return BadRequest(ModelState);
+            }
 
-        //     existingPointOfInterest.Description = pointOfInterestToUpdateDto.Description;
-        //     existingPointOfInterest.Name = pointOfInterestToUpdateDto.Name;
+            this.mapper.Map(pointOfInterestToPatch, inStorePointOfInterest);
+            await this.pointOfInterestRepository.UpdateAsync(inStorePointOfInterest);
+            return NoContent();
+        }
 
-        //     return NoContent();
-        // }
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> DeletePointOfInterest(
+            int cityId,
+            int id)
+        {
+            var city = await this.cityRepository.GetCityAsync(cityId);
+            if (city == null)
+            {
+                return NotFound();
+            }
 
-        // [HttpDelete("{id:int}")]
-        // public IActionResult DeletePointOfInterest(
-        //     int cityId,
-        //     int id)
-        // {
-        //     var city = HelperFunctions.GetCity(cityId);
-        //     if (city == null)
-        //     {
-        //         return NotFound();
-        //     }
+            var inStorePointOfInterest = await this.pointOfInterestRepository.GetPointOfInterestAsync(id);
+            if (inStorePointOfInterest == null)
+                return NotFound();
 
-        //     var existingPointOfInterest = HelperFunctions.GetExistingPointOfInterest(cityId, id);
-        //     if (existingPointOfInterest == null)
-        //     {
-        //         return NotFound();
-        //     }
+            await this.pointOfInterestRepository.DeleteAsync(id);
 
-        //     city.PointsOfInterest.Remove(existingPointOfInterest);
-        //     this._mailService.SendMail(
-        //         $"Point of interest deleted.",
-        //         $"Point of interest {existingPointOfInterest.Name} with id {existingPointOfInterest.Id}");
-        //     return NoContent();
-        // }
+            this._mailService.SendMail(
+                $"Point of interest deleted.",
+                $"Point of interest {inStorePointOfInterest.Name} with id {inStorePointOfInterest.Id}");
+            return NoContent();
+        }
     }
 }

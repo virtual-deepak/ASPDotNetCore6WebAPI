@@ -22,7 +22,9 @@ namespace DotNetCoreWebAPI.Repository
             return await this.context.City.ToListAsync();
         }
 
-        public async Task<City> GetCityAsync(int cityId, bool includePointsOfInterest = false)
+        public async Task<City> GetCityAsync(
+            int cityId,
+            bool includePointsOfInterest = false)
         {
             if (includePointsOfInterest)
             {
