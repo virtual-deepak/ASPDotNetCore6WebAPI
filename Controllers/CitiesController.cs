@@ -1,3 +1,4 @@
+using System.Text.Json;
 using AutoMapper;
 using DotNetCoreWebAPI.Models;
 using DotNetCoreWebAPI.Repository;
@@ -11,24 +12,38 @@ namespace DotNetCoreWebAPI.Controllers
     {
         private readonly ICityRepository cityRepository;
         private readonly IMapper mapper;
+        private readonly IConfiguration configuration;
+
         public CitiesController(
             ICityRepository cityRepository,
-            IMapper mapper)
+            IMapper mapper,
+            IConfiguration configuration)
         {
             this.cityRepository = cityRepository ?? throw new ArgumentNullException(nameof(cityRepository));
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
         [HttpGet]
         public async Task<IActionResult> GetCities(
             string? name,
             string? searchText,
+            int? pageSize,
+            int pageNumber = 1,
             bool includePointsOfInterest = false)
         {
-            return Ok(
-                this.mapper.Map<IEnumerable<CityDto>>(
-                    await this.cityRepository.GetCitiesAsync(name, searchText, includePointsOfInterest))
-            );
+            int maxPageSize = Convert.ToInt32(configuration["ApiSettings:MaxPageSize"]);
+            pageSize = pageSize > maxPageSize || (pageSize == null) ? maxPageSize : pageSize;
+
+            var (cities, paginationMetadata) = await this.cityRepository.GetCitiesAsync(
+                name,
+                searchText,
+                pageNumber,
+                pageSize.Value,
+                includePointsOfInterest);
+
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(paginationMetadata));
+            return Ok(this.mapper.Map<IEnumerable<CityDto>>(cities));
         }
 
         [HttpGet("{id:int}")]

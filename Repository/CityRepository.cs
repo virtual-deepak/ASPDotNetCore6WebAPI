@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using DotNetCoreWebAPI.DbContexts;
 using DotNetCoreWebAPI.Entities;
+using DotNetCoreWebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DotNetCoreWebAPI.Repository
@@ -13,9 +13,11 @@ namespace DotNetCoreWebAPI.Repository
             this.context = context ?? throw new ArgumentNullException(nameof(context));
 
         }
-        public async Task<IEnumerable<City>> GetCitiesAsync(
+        public async Task<(IEnumerable<City>, PaginationMetadata)> GetCitiesAsync(
             string? name,
             string? searchText,
+            int pageNumber,
+            int pageSize,
             bool includePointsOfInterest = false)
         {
             IQueryable<City> citiesQueryable = this.context.City;
@@ -30,13 +32,25 @@ namespace DotNetCoreWebAPI.Repository
                     || (x.Description != null && x.Description.Contains(searchText)));
             }
 
+            int totalRecords = await citiesQueryable.CountAsync();
+
+            var paginationMetadaData =
+                new PaginationMetadata(pageNumber,
+                    pageSize,
+                    totalRecords);
+
+            citiesQueryable = citiesQueryable
+                .Skip(pageSize * (pageNumber - 1))
+                .Take(pageSize);
+
             if (includePointsOfInterest)
             {
-                return await citiesQueryable
-                    .Include(x => x.PointsOfInterest)
-                    .ToListAsync();
+                return (await citiesQueryable
+                            .Include(x => x.PointsOfInterest)
+                            .ToListAsync(),
+                        paginationMetadaData);
             }
-            return await citiesQueryable.ToListAsync();
+            return (await citiesQueryable.ToListAsync(), paginationMetadaData);
         }
 
         public async Task<City> GetCityAsync(
