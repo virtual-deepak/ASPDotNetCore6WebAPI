@@ -235,7 +235,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities/1/pointsofinterest/1",
+					"raw": "https://localhost:{{portNumber}}/api/cities/1/pointsofinterest/2",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -246,7 +246,7 @@
 						"cities",
 						"1",
 						"pointsofinterest",
-						"1"
+						"2"
 					]
 				}
 			},

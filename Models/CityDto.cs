@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using DotNetCoreWebAPI.InMemoryDataStore;
-
 namespace DotNetCoreWebAPI.Models
 {
     public class CityDto

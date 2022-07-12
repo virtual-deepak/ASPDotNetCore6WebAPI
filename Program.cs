@@ -1,10 +1,8 @@
 using DotNetCoreWebAPI.DbContexts;
-using DotNetCoreWebAPI.InMemoryDataStore;
 using DotNetCoreWebAPI.Repository;
 using DotNetCoreWebAPI.Services;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Sqlite;
 using Serilog;
 
 // Log.Logger = new LoggerConfiguration()
@@ -32,9 +30,7 @@ builder.Services.AddTransient<IMailService, LocalMailService>();
 builder.Services.AddTransient<IMailService, CloudMailService>();
 #endif
 
-builder.Services.AddSingleton<CitiesDataStore>();
 // Add services to the container.
-
 builder.Services.AddControllers(options =>
 {
     options.ReturnHttpNotAcceptable = true;

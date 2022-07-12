@@ -1,6 +1,5 @@
 using System.Net;
 using AutoMapper;
-using DotNetCoreWebAPI.Helpers;
 using DotNetCoreWebAPI.Models;
 using DotNetCoreWebAPI.Repository;
 using DotNetCoreWebAPI.Services;
