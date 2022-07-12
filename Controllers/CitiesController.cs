@@ -21,11 +21,13 @@ namespace DotNetCoreWebAPI.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetCities(
+            string? name,
+            string? searchText,
             bool includePointsOfInterest = false)
         {
             return Ok(
                 this.mapper.Map<IEnumerable<CityDto>>(
-                    await this.cityRepository.GetCitiesAsync(includePointsOfInterest))
+                    await this.cityRepository.GetCitiesAsync(name, searchText, includePointsOfInterest))
             );
         }
 
