@@ -8,6 +8,16 @@
 		{
 			"name": "Get All Cities",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZGVlcCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2dpdmVubmFtZSI6ImRlZXBhayIsIkNpdHlOYW1lIjoiQW50d2VycCIsIm5iZiI6MTY1NzY1MzQ0MCwiZXhwIjoxNjU3NjUzNTAwLCJpc3MiOiJsb2NhbGhvc3QiLCJhdWQiOiJDaXR5SW5mbyJ9.-r-Y2I4DW_wsWDYjDsD3WG2wPeRR9lPz8oRsyXPVpOE",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -547,6 +557,35 @@
 						"1",
 						"pointsofinterest",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authentication Endpoint - Get Bearer Token ",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Username\": \"deep\",\r\n    \"Password\": \"topsecret\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/authentication",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"authentication"
 					]
 				}
 			},
