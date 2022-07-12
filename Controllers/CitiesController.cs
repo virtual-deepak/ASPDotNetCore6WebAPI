@@ -1,5 +1,6 @@
-using DotNetCoreWebAPI.InMemoryDataStore;
+using AutoMapper;
 using DotNetCoreWebAPI.Models;
+using DotNetCoreWebAPI.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotNetCoreWebAPI.Controllers
@@ -8,24 +9,38 @@ namespace DotNetCoreWebAPI.Controllers
     [Route("api/cities")]
     public class CitiesController : ControllerBase
     {
-        private readonly CitiesDataStore citiesDataStore;
-
-        public CitiesController(CitiesDataStore citiesDataStore)
+        private readonly ICityRepository cityRepository;
+        private readonly IMapper mapper;
+        public CitiesController(
+            ICityRepository cityRepository,
+            IMapper mapper)
         {
-            this.citiesDataStore = citiesDataStore ?? throw new ArgumentNullException(nameof(citiesDataStore));
+            this.cityRepository = cityRepository ?? throw new ArgumentNullException(nameof(cityRepository));
+            this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet]
-        public IActionResult GetCities()
+        public async Task<IActionResult> GetCities(
+            bool includePointsOfInterest = false)
         {
-            return Ok(this.citiesDataStore.Cities);
+            return Ok(
+                this.mapper.Map<IEnumerable<CityDto>>(
+                    await this.cityRepository.GetCitiesAsync(includePointsOfInterest))
+            );
         }
 
         [HttpGet("{id:int}")]
-        public IActionResult GetCity(int id)
+        public async Task<IActionResult> GetCity(
+            int id,
+            bool includePointsOfInterest = false)
         {
-            var city = this.citiesDataStore.Cities?.FirstOrDefault(x => x.Id == id);
-            return city == null ? NotFound() : Ok(city);
+            var city = await this.cityRepository.GetCityAsync(id, includePointsOfInterest);
+            if (city == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(this.mapper.Map<CityDto>(city));
         }
     }
 }

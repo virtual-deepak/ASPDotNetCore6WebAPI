@@ -1,5 +1,6 @@
 using DotNetCoreWebAPI.DbContexts;
 using DotNetCoreWebAPI.InMemoryDataStore;
+using DotNetCoreWebAPI.Repository;
 using DotNetCoreWebAPI.Services;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
@@ -48,6 +49,11 @@ builder.Services.AddDbContext<CityInfoDbContext>(options =>
 {
     options.UseSqlite(builder.Configuration["ConnectionStrings:DbConnectionString"]);
 });
+
+builder.Services.AddScoped<ICityRepository, CityRepository>();
+builder.Services.AddScoped<IPointOfInterestRepository, PointOfInterestRepository>();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
