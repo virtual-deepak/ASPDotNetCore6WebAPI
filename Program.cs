@@ -49,6 +49,17 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+// Adding a demo authorization policy that the controllers can only be accessed
+// if the CityName in the Claim is Antwerp
+builder.Services.AddAuthorization(configure =>
+{
+    configure.AddPolicy("MustBeFromAntwerp", options =>
+    {
+        options.RequireAuthenticatedUser();
+        options.RequireClaim("CityName", "Antwerp");
+    });
+});
+
 // Add services to the container.
 builder.Services.AddControllers(options =>
 {
@@ -90,7 +101,7 @@ app.UseAuthorization();
 
 app.UseEndpoints((endpointRouteBuilder) =>
 {
-    app.MapControllers().RequireAuthorization();
+    app.MapControllers().RequireAuthorization("MustBeFromAntwerp");
 });
 
 app.Run();
