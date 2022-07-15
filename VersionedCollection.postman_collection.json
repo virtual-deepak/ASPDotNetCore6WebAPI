@@ -6,14 +6,14 @@
 	},
 	"item": [
 		{
-			"name": "Get All Cities",
+			"name": "Get All Cities - Supported v1 and v2",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZGVlcCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2dpdmVubmFtZSI6ImRlZXBhayIsIkNpdHlOYW1lIjoiQW50d2VycCIsIm5iZiI6MTY1Nzg1MzQzNywiZXhwIjoxNjU3ODUzNDk3LCJpc3MiOiJsb2NhbGhvc3QiLCJhdWQiOiJDaXR5SW5mbyJ9.tQ_ECt0g0CglZkZtIOlB7CKDEI8R0cwKtlosjJH9hG0",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZGVlcCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2dpdmVubmFtZSI6ImRlZXBhayIsIkNpdHlOYW1lIjoiQW50d2VycCIsIm5iZiI6MTY1Nzg1NDYxNSwiZXhwIjoxNjU3ODU0Njc1LCJpc3MiOiJsb2NhbGhvc3QiLCJhdWQiOiJDaXR5SW5mbyJ9.ChbdfJsp2KMX1Cr_Ck7CKA0vuDmRdTjbCDY5KfNuM84",
 							"type": "string"
 						}
 					]
@@ -21,7 +21,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:{{portNumber}}/api/cities",
+					"raw": "https://localhost:{{portNumber}}/api/v2/cities",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -29,6 +29,7 @@
 					"port": "{{portNumber}}",
 					"path": [
 						"api",
+						"v2",
 						"cities"
 					]
 				}
@@ -59,6 +60,40 @@
 					"path": [
 						"api",
 						"authentication"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Point Of Interest - Supported v2 only",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZGVlcCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2dpdmVubmFtZSI6ImRlZXBhayIsIkNpdHlOYW1lIjoiQW50d2VycCIsIm5iZiI6MTY1Nzg1NDYxNSwiZXhwIjoxNjU3ODU0Njc1LCJpc3MiOiJsb2NhbGhvc3QiLCJhdWQiOiJDaXR5SW5mbyJ9.ChbdfJsp2KMX1Cr_Ck7CKA0vuDmRdTjbCDY5KfNuM84",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/v2/cities/1/pointsofinterest/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"v2",
+						"cities",
+						"1",
+						"pointsofinterest",
+						"2"
 					]
 				}
 			},

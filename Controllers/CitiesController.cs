@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace DotNetCoreWebAPI.Controllers
 {
     [ApiController]
-    [Route("api/cities")]
+    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
+    [Route("api/v{version:apiVersion}/cities")]
     public class CitiesController : ControllerBase
     {
         private readonly ICityRepository cityRepository;
