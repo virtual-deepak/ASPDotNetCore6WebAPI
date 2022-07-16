@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Text;
 using DotNetCoreWebAPI.DbContexts;
 using DotNetCoreWebAPI.Repository;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Serilog;
 
 // Log.Logger = new LoggerConfiguration()
@@ -91,7 +93,33 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    var xmlCommentsFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlCommentsFullFilePath = Path.Combine(AppContext.BaseDirectory, xmlCommentsFile);
+    options.IncludeXmlComments(xmlCommentsFullFilePath);
+
+    // This adds an "Authorize" button where you can specify token used by all APIs on Swagger UI
+    options.AddSecurityDefinition("BearerAuth", new OpenApiSecurityScheme()
+    {
+        Type = SecuritySchemeType.Http,
+        Scheme = JwtBearerDefaults.AuthenticationScheme
+    });
+
+    // This adds the Authorization Bearer token on the Swagger UI
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement()
+    {
+        {
+            new OpenApiSecurityScheme() {
+                Reference = new OpenApiReference() {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "BearerAuth"
+                }
+            }, new List<string>()
+        }
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

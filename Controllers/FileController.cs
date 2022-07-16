@@ -16,6 +16,7 @@ namespace DotNetCoreWebAPI.Controllers
             this.fileExtensionContentTypeProvider = fileExtensionContentTypeProvider;
         }
 
+        [HttpGet]
         [Route("download")]
         public IActionResult DownloadFile()
         {
