@@ -32,7 +32,16 @@ namespace DotNetCoreWebAPI.Controllers
             this._logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
+        /// <summary>
+        /// Get the points of interest
+        /// </summary>
+        /// <param name="cityId">The city identifier</param>
+        /// <returns>Points of interest for given city</returns>
+        /// <response code="200">Returns the points of interest of given city</response>
+        /// <response code="404">The city identifer doesn't exist</response>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetPointsOfInterest(int cityId)
         {
             var city = await cityRepository.GetCityAsync(cityId);
