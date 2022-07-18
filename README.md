@@ -4,4 +4,4 @@ This repository is hands-on code following the [ASP.NET Core 6 Web API Fundament
 
 Each commit is adding new functionality in the process of building the fully functional Web API.
 
-**Note** - There are branches of this repository focussed on specific area of code. All of them are merged in main
+This branch is focussed on adding Versioning scenarios to Web API. 
