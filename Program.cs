@@ -1,8 +1,11 @@
+using System.Text;
 using DotNetCoreWebAPI.DbContexts;
 using DotNetCoreWebAPI.Repository;
 using DotNetCoreWebAPI.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Serilog;
 
 // Log.Logger = new LoggerConfiguration()
@@ -29,6 +32,33 @@ builder.Services.AddTransient<IMailService, LocalMailService>();
 #else
 builder.Services.AddTransient<IMailService, CloudMailService>();
 #endif
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters()
+        {
+            ValidateAudience = true,
+            ValidateIssuer = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidAudience = builder.Configuration["Authentication:Audience"],
+            ValidIssuer = builder.Configuration["Authentication:Issuer"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.ASCII.GetBytes(builder.Configuration["Authentication:SecretKey"]))
+        };
+    });
+
+// Adding a demo authorization policy that the controllers can only be accessed
+// if the CityName in the Claim is Antwerp
+builder.Services.AddAuthorization(configure =>
+{
+    configure.AddPolicy("MustBeFromAntwerp", options =>
+    {
+        options.RequireAuthenticatedUser();
+        options.RequireClaim("CityName", "Antwerp");
+    });
+});
 
 // Add services to the container.
 builder.Services.AddControllers(options =>
@@ -66,12 +96,12 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseEndpoints((endpointRouteBuilder) =>
 {
-    app.MapControllers();
+    app.MapControllers().RequireAuthorization("MustBeFromAntwerp");
 });
 
 app.Run();

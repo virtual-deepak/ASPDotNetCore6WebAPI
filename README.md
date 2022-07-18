@@ -4,4 +4,4 @@ This repository is hands-on code following the [ASP.NET Core 6 Web API Fundament
 
 Each commit is adding new functionality in the process of building the fully functional Web API.
 
-**Note** - There branches of this repository focussed on specific area of code. All of them are merged in main.
+This branch is targetted towards adding JWT token based security and authorization policies to Web API endpoints. 
