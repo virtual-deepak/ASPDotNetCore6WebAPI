@@ -9,7 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace DotNetCoreWebAPI.Controllers
 {
     [ApiController]
-    [Route("api/cities/{cityId:int}/pointsofinterest")]
+    [ApiVersion("2.0")]
+    [Route("api/v{version:apiVersion}/cities/{cityId:int}/pointsofinterest")]
     public class PointOfInterestController : ControllerBase
     {
         private readonly IMailService _mailService;
