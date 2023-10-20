@@ -1,15 +1,33 @@
 {
-    "version": "2.0.0",
-    "tasks": [
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "dotnet",
+			"task": "build",
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build",
+			"label": "dotnet: build"
+		},
+		{
+			"type": "dotnet",
+			"task": "clean",
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "clean",
+			"label": "dotnet: clean"
+        },
         {
             "label": "build",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/DotNetCoreWebAPI.csproj",
+                "${workspaceFolder}/ASPDotNetCore6WebAPI.sln",
                 "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -19,9 +37,9 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/DotNetCoreWebAPI.csproj",
+                "${workspaceFolder}/ASPDotNetCore6WebAPI.sln",
                 "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -33,9 +51,9 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/DotNetCoreWebAPI.csproj"
+                "${workspaceFolder}/ASPDotNetCore6WebAPI.sln"
             ],
             "problemMatcher": "$msCompile"
         }
-    ]
+	]
 }
