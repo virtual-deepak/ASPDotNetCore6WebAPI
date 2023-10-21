@@ -1,10 +1,13 @@
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-
-var app = builder.Build();
-app.UseApiKey();
-app.MapControllers();
-app.Run();
+namespace Authentication
+{
+    public static class Program
+    {
+        public static void Main(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
+            var app = builder.Build();
+            app.UseApiKey();
+            app.Run();
+        }
+    }
+}
