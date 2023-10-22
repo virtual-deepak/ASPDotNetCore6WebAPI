@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
@@ -14,6 +14,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GettingStarted", "CityInfo.API\GettingStarted\GettingStarted.csproj", "{866F06BE-EB6D-4FED-BA08-E7684B61569F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddingControllers", "CityInfo.API\AddingControllers\AddingControllers.csproj", "{4BF54552-0B84-43D5-A458-81B4A4587945}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkingWithFiles", "WorkingWithFiles", "{8C13B24B-4EB7-42F1-8925-DA636AA22B46}"
+	ProjectSection(SolutionItems) = preProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingWithFiles", "WorkingWithFiles\WorkingWithFiles.csproj", "{CBF81BAE-5D72-4F72-9663-F17372812A75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,11 +43,16 @@ Global
 		{4BF54552-0B84-43D5-A458-81B4A4587945}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BF54552-0B84-43D5-A458-81B4A4587945}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BF54552-0B84-43D5-A458-81B4A4587945}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBF81BAE-5D72-4F72-9663-F17372812A75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBF81BAE-5D72-4F72-9663-F17372812A75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBF81BAE-5D72-4F72-9663-F17372812A75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBF81BAE-5D72-4F72-9663-F17372812A75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{CBF81BAE-5D72-4F72-9663-F17372812A75} = {8C13B24B-4EB7-42F1-8925-DA636AA22B46}
 		{EE1749EA-47C1-4EBE-8EE5-EE2681C19CEC} = {64AF81E3-3D83-4848-AB4A-326FA661E280}
 		{FE9D1CA4-39F4-4833-8E3A-DAEC4FD750D7} = {64AF81E3-3D83-4848-AB4A-326FA661E280}
 		{866F06BE-EB6D-4FED-BA08-E7684B61569F} = {B1E1E2EA-AFFB-444A-BAD6-2BEB11B515D3}
