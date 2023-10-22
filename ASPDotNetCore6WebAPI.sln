@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkingWithFiles", "Working
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingWithFiles", "WorkingWithFiles\WorkingWithFiles.csproj", "{CBF81BAE-5D72-4F72-9663-F17372812A75}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRUD", "CityInfo.API\CRUD\CRUD.csproj", "{6208A657-7C95-44D0-8931-06E2DE36CE13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{CBF81BAE-5D72-4F72-9663-F17372812A75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBF81BAE-5D72-4F72-9663-F17372812A75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBF81BAE-5D72-4F72-9663-F17372812A75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6208A657-7C95-44D0-8931-06E2DE36CE13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6208A657-7C95-44D0-8931-06E2DE36CE13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6208A657-7C95-44D0-8931-06E2DE36CE13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6208A657-7C95-44D0-8931-06E2DE36CE13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +63,7 @@ Global
 		{FE9D1CA4-39F4-4833-8E3A-DAEC4FD750D7} = {64AF81E3-3D83-4848-AB4A-326FA661E280}
 		{866F06BE-EB6D-4FED-BA08-E7684B61569F} = {B1E1E2EA-AFFB-444A-BAD6-2BEB11B515D3}
 		{4BF54552-0B84-43D5-A458-81B4A4587945} = {B1E1E2EA-AFFB-444A-BAD6-2BEB11B515D3}
+		{6208A657-7C95-44D0-8931-06E2DE36CE13} = {B1E1E2EA-AFFB-444A-BAD6-2BEB11B515D3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B8B903D8-F6AB-436B-9C42-94467A0E67CD}
