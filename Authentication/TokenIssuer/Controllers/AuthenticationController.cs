@@ -64,6 +64,6 @@ public class AuthenticationController : ControllerBase
             authenticationRequestBody.UserName ?? "", 
             "John",
             "Doe",
-            "New York");
+            "Pune");
     }
 }
