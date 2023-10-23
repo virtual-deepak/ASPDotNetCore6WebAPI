@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
@@ -26,6 +26,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging", "CityInfo.API\Logging\Logging.csproj", "{A7DAA116-2BD6-4149-B753-F12297590DCE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "CityInfo.API\Services\Services.csproj", "{B22FDFD8-39EC-4C90-8C10-C4CAD5EAA5E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokenIssuer", "Authentication\Token\TokenIssuer\TokenIssuer.csproj", "{8DFA1550-3978-4F7B-B6C4-25E913594DCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +67,10 @@ Global
 		{B22FDFD8-39EC-4C90-8C10-C4CAD5EAA5E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B22FDFD8-39EC-4C90-8C10-C4CAD5EAA5E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B22FDFD8-39EC-4C90-8C10-C4CAD5EAA5E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DFA1550-3978-4F7B-B6C4-25E913594DCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DFA1550-3978-4F7B-B6C4-25E913594DCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DFA1550-3978-4F7B-B6C4-25E913594DCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DFA1550-3978-4F7B-B6C4-25E913594DCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +84,7 @@ Global
 		{6208A657-7C95-44D0-8931-06E2DE36CE13} = {B1E1E2EA-AFFB-444A-BAD6-2BEB11B515D3}
 		{A7DAA116-2BD6-4149-B753-F12297590DCE} = {B1E1E2EA-AFFB-444A-BAD6-2BEB11B515D3}
 		{B22FDFD8-39EC-4C90-8C10-C4CAD5EAA5E2} = {B1E1E2EA-AFFB-444A-BAD6-2BEB11B515D3}
+		{8DFA1550-3978-4F7B-B6C4-25E913594DCE} = {64AF81E3-3D83-4848-AB4A-326FA661E280}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B8B903D8-F6AB-436B-9C42-94467A0E67CD}
