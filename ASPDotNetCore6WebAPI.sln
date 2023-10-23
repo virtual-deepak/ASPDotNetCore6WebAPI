@@ -35,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authorization", "Authorizat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolicyBased", "Authorization\PolicyBased\PolicyBased.csproj", "{19F3D576-084D-4135-AFBD-0D6FB2F53673}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Versioning", "CityInfo.API\Versioning\Versioning.csproj", "{7A5B7229-361F-41D1-9F06-B01C77217356}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,10 @@ Global
 		{19F3D576-084D-4135-AFBD-0D6FB2F53673}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19F3D576-084D-4135-AFBD-0D6FB2F53673}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19F3D576-084D-4135-AFBD-0D6FB2F53673}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A5B7229-361F-41D1-9F06-B01C77217356}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A5B7229-361F-41D1-9F06-B01C77217356}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A5B7229-361F-41D1-9F06-B01C77217356}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A5B7229-361F-41D1-9F06-B01C77217356}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,6 +107,7 @@ Global
 		{8DFA1550-3978-4F7B-B6C4-25E913594DCE} = {64AF81E3-3D83-4848-AB4A-326FA661E280}
 		{3D694A84-8E3F-48C0-BF2E-97AEA13E877E} = {64AF81E3-3D83-4848-AB4A-326FA661E280}
 		{19F3D576-084D-4135-AFBD-0D6FB2F53673} = {76887F64-952C-46A3-ADAA-FF910B4E965E}
+		{7A5B7229-361F-41D1-9F06-B01C77217356} = {B1E1E2EA-AFFB-444A-BAD6-2BEB11B515D3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B8B903D8-F6AB-436B-9C42-94467A0E67CD}
