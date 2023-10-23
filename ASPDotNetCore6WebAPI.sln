@@ -27,7 +27,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging", "CityInfo.API\Log
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "CityInfo.API\Services\Services.csproj", "{B22FDFD8-39EC-4C90-8C10-C4CAD5EAA5E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokenIssuer", "Authentication\Token\TokenIssuer\TokenIssuer.csproj", "{8DFA1550-3978-4F7B-B6C4-25E913594DCE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokenIssuer", "Authentication\TokenIssuer\TokenIssuer.csproj", "{8DFA1550-3978-4F7B-B6C4-25E913594DCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokenConsumer", "Authentication\TokenConsumer\TokenConsumer.csproj", "{3D694A84-8E3F-48C0-BF2E-97AEA13E877E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,10 @@ Global
 		{8DFA1550-3978-4F7B-B6C4-25E913594DCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DFA1550-3978-4F7B-B6C4-25E913594DCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DFA1550-3978-4F7B-B6C4-25E913594DCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D694A84-8E3F-48C0-BF2E-97AEA13E877E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D694A84-8E3F-48C0-BF2E-97AEA13E877E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D694A84-8E3F-48C0-BF2E-97AEA13E877E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D694A84-8E3F-48C0-BF2E-97AEA13E877E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -85,6 +91,7 @@ Global
 		{A7DAA116-2BD6-4149-B753-F12297590DCE} = {B1E1E2EA-AFFB-444A-BAD6-2BEB11B515D3}
 		{B22FDFD8-39EC-4C90-8C10-C4CAD5EAA5E2} = {B1E1E2EA-AFFB-444A-BAD6-2BEB11B515D3}
 		{8DFA1550-3978-4F7B-B6C4-25E913594DCE} = {64AF81E3-3D83-4848-AB4A-326FA661E280}
+		{3D694A84-8E3F-48C0-BF2E-97AEA13E877E} = {64AF81E3-3D83-4848-AB4A-326FA661E280}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B8B903D8-F6AB-436B-9C42-94467A0E67CD}

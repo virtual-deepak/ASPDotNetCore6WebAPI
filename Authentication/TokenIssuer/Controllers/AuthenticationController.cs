@@ -45,7 +45,7 @@ public class AuthenticationController : ControllerBase
             _configuration["Authentication:Audience"],
             claimsForToken,
             DateTime.UtcNow,
-            DateTime.UtcNow.AddDays(5),
+            DateTime.UtcNow.AddDays(1),
             signingCredentials);
         
         var tokenToReturn = new JwtSecurityTokenHandler()

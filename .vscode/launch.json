@@ -1,16 +1,20 @@
 {
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": ".NET Core Launch (console)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/Authentication/SwaggerApiKeySecurity/bin/Debug/net7.0/SwaggerApiKeySecurity.dll",
+            "program": "${workspaceFolder}/Authentication/TokenConsumer/bin/Debug/net7.0/TokenConsumer.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
         },
         {
             // Use IntelliSense to find out which attributes exist for C# debugging
@@ -21,9 +25,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/CityInfo.API/GettingStarted/bin/Debug/net7.0/GettingStarted.dll",
+            "program": "${workspaceFolder}/Authentication/TokenConsumer/bin/Debug/net7.0/TokenConsumer.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/CityInfo.API/GettingStarted",
+            "cwd": "${workspaceFolder}/Authentication/TokenConsumer",
             "stopAtEntry": false,
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             "serverReadyAction": {
